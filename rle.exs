@@ -4,10 +4,12 @@
 
 defmodule RLE do
   def encode(input) do
-    _encode(String.codepoints(input), [])
+    String.codepoints(input)
+    |> _encode([])
+    |> Enum.join
   end
 
-  def _encode([], out), do: Enum.reverse(out) |> Enum.join
+  def _encode([], out), do: Enum.reverse(out)
 
   def _encode([char | rest], out) do
     _encode(rest, {1, char}, out)
